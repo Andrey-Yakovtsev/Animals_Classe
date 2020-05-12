@@ -44,6 +44,7 @@ class Domestic_animals:
 class Birds(Domestic_animals):
     def geteggs(self):
         self.eggs = "eggs collected"
+        print(f'Добыли у {self.name} яичек')
 
 
 class Horny_animals(Domestic_animals):
@@ -54,6 +55,7 @@ class Horny_animals(Domestic_animals):
 
     def getwool(self):
         self.wool = "shaved"
+        print(f'Получили с {self.name} шерсти клочок')
 
 
 class Goose(Birds):
@@ -114,8 +116,9 @@ Kryakva_duck = Duck("Кряква", 3.8)
 Kryakva_duck.eggs = 1
 
 
-# Задача 2 - активности с животными
-'''
+# Задача 2
+# активности с животными
+
 print("Работаем:")
 Kryakva_duck.hydrate()
 Manka_Cow.getmilk(15)
@@ -135,24 +138,30 @@ print(Kryakva_duck.sound)
 print(Manka_Cow.sound)
 print(Kryakva_duck.sound)
 print(Roga_goat.sound)
-'''
+print()
 
-# Задача 3 - Необходимо посчитать общий вес всех животных(экземпляров класса);
+
+# Задача 3
+# Необходимо посчитать общий вес всех животных(экземпляров класса);
 # Вывести название самого тяжелого животного.)
 
-#print(Domestic_animals.objectcounter)
-#pprint(Domestic_animals.domestic_animals_list)
-#pprint(Domestic_animals.domestic_animals_list[0]['weight'])
 
 
 def animals_weight_list():
     i = 0
     animals_weight_list = []
     for weight in Domestic_animals.domestic_animals_list:
-        #print(Domestic_animals.domestic_animals_list[i]['weight'])
-        animals_weight_list.append(weight)
+        #print(weight)
+        animals_weight_list.append(weight['weight'])
         i+=1
-    return print(animals_weight_list)
+    total_weight = sum(animals_weight_list)
+    print(f'Общий вес всех животных {total_weight} кг.')
+
+    max_weight = max(animals_weight_list)
+    for heavy_animal_name in Domestic_animals.domestic_animals_list:
+        if heavy_animal_name['weight'] == max_weight:
+            print(f'Самое тяжелое животное весит {max(animals_weight_list)} кг. и зовется')
+            print(heavy_animal_name['name'])
 
 animals_weight_list()
 
