@@ -16,13 +16,20 @@ class Domestic_animals:
         self.weight = weight
         Domestic_animals.objectcounter += 1
         new_object_dict = dict(
-            classname=Domestic_animals.__name__,
-            #subclassname=Birds,
-            object=self,
+            classname=self.__class__.__base__.__name__,
+            subclassname=self.__class__.__name__,
             name=self.name,
             weight=self.weight
         )
         Domestic_animals.domestic_animals_list.append(new_object_dict)
+        # pprint(new_object_dict)
+
+    # pprint(Horny_animals.__base__.__name__)
+    # pprint(Birds.__base__.__name__)
+    # pprint(Duck.__base__.__name__)
+    # pprint(Kryakva_duck.__class__.__name__)
+    # pprint(White_Goose.__class__.__name__)
+    # pprint(White_Goose.__name__)
 
 
     def hydrate(self):
@@ -37,9 +44,6 @@ class Domestic_animals:
     def be_active(self):
         self.status = "is active"
 
-
-# def make_a_sound(self):
-# self.sound = "sound"
 
 class Birds(Domestic_animals):
     def geteggs(self):
@@ -146,7 +150,6 @@ print()
 # Вывести название самого тяжелого животного.)
 
 
-
 def animals_weight_list():
     i = 0
     animals_weight_list = []
@@ -163,6 +166,19 @@ def animals_weight_list():
             print(f'Самое тяжелое животное весит {max(animals_weight_list)} кг. и зовется')
             print(heavy_animal_name['name'])
 
-animals_weight_list()
+    horny_animals_weight = 0
+    birds_weight = 0
+    for items in Domestic_animals.domestic_animals_list:
+        if items['classname'] == 'Horny_animals':
+            horny_animals_weight += items['weight']
+    print("Вес всех рогатых составляет: ", horny_animals_weight, "кг.")
 
+    for items in Domestic_animals.domestic_animals_list:
+        if items['classname'] == 'Birds':
+            birds_weight += items['weight']
+    print("Вес всех пернатых составляет: ", birds_weight, "кг.")
+
+
+
+animals_weight_list()
 
